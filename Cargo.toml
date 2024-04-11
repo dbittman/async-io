@@ -29,10 +29,14 @@ concurrent-queue = "2.2.0"
 futures-io = { version = "0.3.28", default-features = false, features = ["std"] }
 futures-lite = { version = "2.0.0", default-features = false }
 parking = "2.0.0"
-polling = { path = "../polling" }
-#rustix = { version = "0.38.2", default-features = false, features = ["fs", "net", "std"] }
+polling = "3.6.0"
 slab = "0.4.2"
 tracing = { version = "0.1.37", default-features = false }
+
+[target.'cfg(not(target_os = "twizzler"))'.dependencies]
+rustix = { version = "0.38.2", default-features = false, features = ["fs", "net", "std"] }
+
+[target.'cfg(target_os = "twizzler")'.dependencies]
 twizzler-futures = { path = "../../twizzler-futures" }
 
 [target.'cfg(windows)'.dependencies]
